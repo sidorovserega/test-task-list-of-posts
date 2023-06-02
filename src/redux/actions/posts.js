@@ -1,9 +1,10 @@
 import axios from "axios";
 
-export const fetchPosts = () => (dispatch) => {
+export const fetchPosts = (searchTitlePost) => (dispatch) => {
   dispatch(setLoading(false));
   
-  //const filter = category !== null ? "&category=" + category : "";
+  const filterTitle = searchTitlePost !== '' ? "?title=" + searchTitlePost : "";
+  
   setTimeout(()=>{
     axios.get(`/posts`).
     then(({data}) => dispatch(setPosts(data)));

@@ -1,15 +1,43 @@
-import React from 'react';
-import { Container, Figure, Nav, Navbar, Offcanvas } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Container, Dropdown, DropdownButton, Figure, Form, Nav, Navbar, Offcanvas } from 'react-bootstrap';
 import avatarImage from '../assets/img/avatar-scaled.jpeg';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setTitlePost } from '../redux/actions';
+import { setSortBy } from '../redux/actions/filters';
 
 
 const Header = () => {
+  const [seachTitle, setSeachTitle] = useState("");
+
+  const dispatch = useDispatch();
+
+  const onSearchTitlePosts = (e) => {
+    setSeachTitle(e.target.value);
+    dispatch(setTitlePost(e.target.value));
+  }
+
+  const onSortPosts = (type) => {
+    dispatch(setSortBy(type));
+  }
+
   return (
     <header>
       <Navbar bg="light" expand={false} className="mb-3">
         <Container fluid>
           <Navbar.Toggle aria-controls={`offcanvasNavbar-expand`} />
+          <DropdownButton id="dropdown" title={"Сортировка постов по заголовку"}>
+            <Dropdown.Item onClick={() => onSortPosts("start")}>Сортировка по убыванию</Dropdown.Item>
+            <Dropdown.Item onClick={() => onSortPosts('ent')}>Сортировка по возрастанию</Dropdown.Item>
+          </DropdownButton>
+          <Form className="d-flex">
+            <Form.Control
+              type="search"
+              placeholder="Search title"
+              value={seachTitle}
+              onChange={onSearchTitlePosts}
+            />
+          </Form>
           <Navbar.Offcanvas
             id={`offcanvasNavbar-expand-false`}
             aria-labelledby={`offcanvasNavbarLabel-expand-false`}
