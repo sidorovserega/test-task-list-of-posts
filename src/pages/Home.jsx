@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import Post from '../components/Post';
 import { fetchUsers, fetchPosts } from '../redux/actions/index';
+import Loader from '../components/Loader';
 
 const Home = () => {
   
@@ -19,8 +20,8 @@ const Home = () => {
   const dispatch = useDispatch();
   
   useEffect(() => {
-    dispatch(fetchPosts());
     dispatch(fetchUsers());
+    dispatch(fetchPosts());
   }, []);
 
   return (
@@ -38,7 +39,7 @@ const Home = () => {
             />
           )
         :
-          ""  // Array(12).fill(0).map((_, index) => <PizzaLoadingBlock key={index}/>)
+          Array(5).fill(0).map((_, index) => <Loader key={index}/>)
       }
     </div>
   )

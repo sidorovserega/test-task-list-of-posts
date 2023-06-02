@@ -39,7 +39,7 @@ const Post = ({title, body, postId, userName}) => {
               </Figure>
           <Button variant="primary" onClick={onClickButton}>Комментарии</Button>
           {activeComments && 
-            comments.map(comment => <Comments title={comment.email} text={comment.body}/>)
+            comments.map(comment => <Comments key={comment.id} title={comment.email} text={comment.body}/>)
           }
         </Card.Body>
     </Card>

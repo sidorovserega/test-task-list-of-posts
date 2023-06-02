@@ -4,10 +4,10 @@ export const fetchPosts = () => (dispatch) => {
   dispatch(setLoading(false));
   
   //const filter = category !== null ? "&category=" + category : "";
-  
-  axios.get(`/posts`).
+  setTimeout(()=>{
+    axios.get(`/posts`).
     then(({data}) => dispatch(setPosts(data)));
-  
+  }, 500);
 };
 
 export const setPosts = (items) => ({
