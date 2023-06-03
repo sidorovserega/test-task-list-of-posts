@@ -20,7 +20,7 @@ const Post = ({title, body, postId, userName}) => {
     <div>
       <Card className='mb-10'>
         <Card.Body>
-          <Card.Title>{title}</Card.Title>
+          <Card.Title>{postId} {title}</Card.Title>
           <Card.Text>
             {body}
           </Card.Text>
