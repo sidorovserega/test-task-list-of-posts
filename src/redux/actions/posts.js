@@ -3,8 +3,6 @@ import axios from "axios";
 export const fetchPosts = (limit, page) => (dispatch) => {
   dispatch(setLoading(false));
   
-  // const filterTitle = searchTitlePost !== '' ? "?title=" + searchTitlePost : "";
-  
   setTimeout(()=>{
     axios.get(`/posts`, {
       params: {
@@ -16,9 +14,23 @@ export const fetchPosts = (limit, page) => (dispatch) => {
   }, 500);
 };
 
+export const fetchPostsByUser = (userId) => (dispatch) => {
+  dispatch(setLoading(false));
+  
+  setTimeout(()=>{
+    axios.get(`/posts?userId=${userId}`).
+    then(({data}) => dispatch(setPostsByUser(data)));
+  }, 500);
+}
+
 export const setPosts = (items) => ({
   type: 'SET_POSTS',
   payload: items
+});
+
+export const setPostsByUser = (postsByUser) => ({
+  type: 'SET_POSTS_BY_USER',
+  payload: postsByUser
 });
 
 export const setLoading = (value) => ({

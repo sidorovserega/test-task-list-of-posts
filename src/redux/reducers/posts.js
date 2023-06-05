@@ -11,6 +11,12 @@ const posts = (state = initialState, action) => {
         items: action.payload,
         isLoading: true
       };
+    case 'SET_POSTS_BY_USER':
+      return {
+        ...state,
+        items: [...action.payload],
+        isLoading: true
+      }
     case 'SET_LOADING':
       return {
         ...state,

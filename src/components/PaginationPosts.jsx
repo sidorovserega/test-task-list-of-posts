@@ -14,7 +14,7 @@ const PaginationPosts = ({totalPages, page, changePage}) => {
         <Pagination.First onClick={() => changePage(1)}/>
         <Pagination.Prev onClick={() => changePage(page - 1)}/>
         {result.map(i => 
-          <Pagination.Item onClick={() => changePage(i)} className={i === page ? 'active' : ''}>
+          <Pagination.Item key={i} onClick={() => changePage(i)} className={i === page ? 'active' : ''}>
             {i}
           </Pagination.Item>)
         }

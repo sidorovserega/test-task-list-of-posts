@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUsers, fetchPosts } from '../redux/actions/index';
+import { fetchPosts, fetchUsers} from '../redux/actions/index';
 
 import Post from '../components/Post';
 import Loader from '../components/Loader';
@@ -15,13 +15,13 @@ const Home = () => {
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
 
-  const {items, isLoading, users, searchTitlePost, sortBy} = useSelector(({posts, users, filters}) => {
+  const {items, isLoading, searchTitlePost, sortBy, users} = useSelector(({posts, filters, users}) => {
     return {
       items: posts.items,
       isLoading: posts.isLoading,
-      users: users.users,
       searchTitlePost: filters.searchTitlePost,
       sortBy: filters.sortBy,
+      users: users.users
     }
   });
 
@@ -31,7 +31,6 @@ const Home = () => {
     dispatch(fetchUsers());
     dispatch(fetchPosts());
   }, []);
-
   //посты после сортировки и фильтрации
   const resultItemsPosts = sortAndSearchItems(items,sortBy,searchTitlePost);
 
@@ -39,7 +38,7 @@ const Home = () => {
   const resultPostsFromPage = selectPostsFromPage(resultItemsPosts, page, limit);
 
   //подсчет количества страниц
-  const totalPages = getPagesCount(items.length, limit);
+  const totalPages = getPagesCount(resultItemsPosts.length, limit);
   
   //обновление номера страницы и вывод нужной страницы
   const changePage = (page) => {
@@ -57,13 +56,13 @@ const Home = () => {
             title={item.title} 
             body={item.body}  
             postId={item.id}
+            userId={item.userId}
             userName={users.find(user => user.id === item.userId).name}
           />
         )
         :
         Array(5).fill(0).map((_, index) => <Loader key={index}/>)
       }
-
       <PaginationPosts totalPages={totalPages} page={page} changePage={changePage}/>
     </div>
   )
