@@ -1,18 +1,27 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { Button, Card, Figure } from 'react-bootstrap';
 import avatarUserImage from '../assets/img/avatar-user.svg';
-import { useNavigate } from 'react-router-dom';
-import Comments from './Comments';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCommentsByPost } from '../redux/actions/comments';
+import CommentList from './comments/CommentList';
+
 
 const Post = ({title, body, postId, userId, userName}) => {
   
   const [activeComments, setActiveComments] = useState(false);
-  const [comments, setComments] = useState([]);
   
+  const dispatch = useDispatch();
+
+  const {commentsByPost} = useSelector(({comments}) => {
+    return {
+      commentsByPost: comments.comments.filter(comment => comment.postId === postId)
+    }
+  });
+
   const onClickButton = async () => {
-    axios.get(`/posts/${postId}/comments`).
-      then(({data}) => setComments([...data]));
+    dispatch(fetchCommentsByPost(postId));
     setActiveComments(!activeComments);
   };
 
@@ -20,13 +29,17 @@ const Post = ({title, body, postId, userId, userName}) => {
 
   return (
     <div>
-      <Card className='mb-10'>
-        <Card.Body>
-          <Card.Title>{postId} {title}</Card.Title>
-          <Card.Text>
-            {body}
-          </Card.Text>
-          <Figure className='d-flex align-items-center'>
+      <Card className='mb-10 card-post'>
+        
+        <Card.Body className='cardPostBody'>
+          <Card.Title>{postId}. {title}</Card.Title>
+          <Card.Text>{body}</Card.Text>
+          <Button variant="primary" onClick={onClickButton}>Комментарии</Button>
+          {activeComments && <CommentList commentsByPost={commentsByPost}/>}
+        </Card.Body>
+
+        <Card.Body className='cardPostUser'>
+          <Figure>
             <Figure.Image
               width={100}
               height={100}
@@ -34,15 +47,11 @@ const Post = ({title, body, postId, userId, userName}) => {
               src={avatarUserImage}
               onClick={() => navigate(`/users/${userId}`)}
             />
-            <Figure.Caption>
-              {userName}
-            </Figure.Caption>
+            <Figure.Caption className='userNameToPost'>{userName}</Figure.Caption>
           </Figure>
-          <Button variant="primary" onClick={onClickButton}>Комментарии</Button>
-          {activeComments && 
-            comments.map(comment => <Comments key={comment.id} title={comment.email} text={comment.body}/>)
-          }
+          
         </Card.Body>
+
     </Card>
     </div>
   )

@@ -1,10 +1,11 @@
 import React from 'react';
-import { Card, Figure, Placeholder } from 'react-bootstrap';
+import { Card, Placeholder } from 'react-bootstrap';
 
 const Loader = () => {
+  
   return (
-    <div>
-      <Card className='mb-10'>
+    Array(5).fill(0).map((_, index) => 
+      <Card key={index} className='mb-10'>
         <Card.Body>
           <Placeholder as={Card.Title} animation="glow">
             <Placeholder xs={6} />
@@ -17,8 +18,8 @@ const Loader = () => {
           </Placeholder>   
           <Placeholder.Button variant="primary" xs={2} />
         </Card.Body>
-    </Card>
-    </div>
+      </Card>
+    )
   )
 }
 

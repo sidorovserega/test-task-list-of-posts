@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchPosts, fetchUsers} from '../redux/actions/index';
 
 import Post from '../components/Post';
-import Loader from '../components/Loader';
+import LoaderPost from '../components/loaders/LoaderPost';
 import PaginationPosts from '../components/PaginationPosts';
 
 import { getPagesCount, selectPostsFromPage } from '../utils/pages';
@@ -14,23 +14,23 @@ const Home = () => {
   
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
+  const dispatch = useDispatch();
 
-  const {items, isLoading, searchTitlePost, sortBy, users} = useSelector(({posts, filters, users}) => {
+  const {items, isLoadingPosts, searchTitlePost, sortBy, users} = useSelector(({posts, filters, users}) => {
     return {
       items: posts.items,
-      isLoading: posts.isLoading,
+      isLoadingPosts: posts.isLoadingPosts,
       searchTitlePost: filters.searchTitlePost,
       sortBy: filters.sortBy,
       users: users.users
     }
   });
 
-  const dispatch = useDispatch();
-  
   useEffect(() => {
     dispatch(fetchUsers());
     dispatch(fetchPosts());
   }, []);
+  
   //посты после сортировки и фильтрации
   const resultItemsPosts = sortAndSearchItems(items,sortBy,searchTitlePost);
 
@@ -47,8 +47,8 @@ const Home = () => {
   
   return (
     <div>
-      <h1>Список постов</h1>
-      {isLoading
+      <h1 className='mainHeader'>Список постов</h1>
+      {isLoadingPosts
         ?
         resultPostsFromPage.map(item => 
           <Post 
@@ -61,7 +61,7 @@ const Home = () => {
           />
         )
         :
-        Array(5).fill(0).map((_, index) => <Loader key={index}/>)
+        <LoaderPost />
       }
       <PaginationPosts totalPages={totalPages} page={page} changePage={changePage}/>
     </div>

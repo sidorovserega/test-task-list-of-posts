@@ -1,0 +1,117 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* -----------------start style header-------------------------------------- */
+.mainHeader {
+  margin: 10px;
+}
+
+.headerMenu-link {
+  color: black;
+  padding: 5px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.headerMenu-link:hover {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.captionAbout {
+  color: black;
+}
+/* -----------------end style header --------------------------------------- */
+
+
+/* -----------------start style posts---------------------------------------- */
+.userNameToPost {
+  display: block;
+  font-size: 20px;
+}
+
+.card-post {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: start;
+  margin: 10px
+}
+
+.cardPostBody {
+  width: 80%;
+}
+
+.cardPostUser {
+  width: 20%;
+  text-align: center;
+  margin: 20px;
+}
+/* ----------------------end style posts----------------------------------- */
+
+
+/* ----------------------start style comments-------------------------------- */
+.commentsList {
+  margin-top: 10px;
+  display: block;
+  width: 100%;
+}
+
+.commentItem {
+  border: none;
+  padding: 0;
+  margin-bottom: 5px;
+}
+
+.commentItem:last-child {
+  margin-bottom: 0;
+}
+
+.commentItem-card {
+  border: 1px solid rgba(0, 0, 0, 0.175);
+  border-radius: 10px;
+  margin: 0;
+  padding: 10px; 
+}
+/* ----------------------end style comments------------------------------------- */
+
+
+/* -----------------------start style users-------------------------------------- */
+.userDetails {
+  margin: 10px;
+  padding: 25px;
+}
+
+.buttonUserDetails {
+  margin: 10px;
+  width: 140px;
+}
+/* -----------------------end style users------------------------------------------ */
+
+
+/* -----------------------start style about----------------------------------------- */
+.cardAbout {
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.imageAbout {
+  width: 250px;
+  height: auto;
+}
+
+.linkAbout {
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+/* -------------------------end style about-------------------------------------------- */
+
+
+/* --------------------------start style @media------------------------------------------ */

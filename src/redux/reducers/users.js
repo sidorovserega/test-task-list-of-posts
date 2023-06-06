@@ -1,5 +1,6 @@
 const initialState = {
-  users: []
+  users: [],
+  isLoadingUser: false
 }
 
 const users = (state = initialState, action) => {
@@ -12,7 +13,8 @@ const users = (state = initialState, action) => {
     case 'SET_BY_USER':
        return {
         ...state,
-        users: [...state.users, action.payload]
+        users: [action.payload],
+        isLoadingUser: true
       }
     default:
       return state;

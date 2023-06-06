@@ -2,7 +2,7 @@ import React from 'react';
 import { Pagination } from 'react-bootstrap';
 
 const PaginationPosts = ({totalPages, page, changePage}) => {
-
+  
   //создание массива с номерами выводимых страниц
   let result = [];
   for (let i = 0; i < totalPages; i++) {

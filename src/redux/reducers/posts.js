@@ -1,6 +1,6 @@
 const initialState = {
   items: [],
-  isLoading: false
+  isLoadingPosts: false
 }
 
 const posts = (state = initialState, action) => {
@@ -9,18 +9,18 @@ const posts = (state = initialState, action) => {
       return {
         ...state,
         items: action.payload,
-        isLoading: true
+        isLoadingPosts: true
       };
     case 'SET_POSTS_BY_USER':
       return {
         ...state,
         items: [...action.payload],
-        isLoading: true
+        isLoadingPosts: true
       }
     case 'SET_LOADING':
       return {
         ...state,
-        isLoading: action.payload
+        isLoadingPosts: action.payload
       };
     default:
       return state;
