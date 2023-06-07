@@ -42,7 +42,9 @@ const Home = () => {
   
   //обновление номера страницы и вывод нужной страницы
   const changePage = (page) => {
-    setPage(page);
+    if (page >= 1 && page <= totalPages) {
+      setPage(page);
+    }
   }
   
   return (

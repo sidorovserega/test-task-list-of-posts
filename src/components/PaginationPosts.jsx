@@ -12,12 +12,19 @@ const PaginationPosts = ({totalPages, page, changePage}) => {
   return (
       <Pagination>
         <Pagination.First onClick={() => changePage(1)}/>
-        <Pagination.Prev onClick={() => changePage(page - 1)}/>
-        {result.map(i => 
-          <Pagination.Item key={i} onClick={() => changePage(i)} className={i === page ? 'active' : ''}>
-            {i}
-          </Pagination.Item>)
-        }
+        <Pagination.Prev onClick={() => changePage(page-1)}/>
+        {document.documentElement.clientWidth > 600 
+        ?
+          result.map(i => 
+            <Pagination.Item key={i} onClick={() => changePage(i)} className={i === page ? 'active' : ''}>
+              {i}
+            </Pagination.Item>
+          )
+        :
+          <Pagination.Item>
+            {page}
+          </Pagination.Item>
+      }
         <Pagination.Next onClick={() => changePage(page + 1)}/>
         <Pagination.Last onClick={() => changePage(totalPages)}/>
       </Pagination>

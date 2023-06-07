@@ -28,12 +28,10 @@ const Post = ({title, body, postId, userId, userName}) => {
   const navigate = useNavigate();
 
   return (
-    <div>
       <Card className='mb-10 card-post'>
-        
         <Card.Body className='cardPostBody'>
           <Card.Title>{postId}. {title}</Card.Title>
-          <Card.Text>{body}</Card.Text>
+          <Card.Text className=''>{body}</Card.Text>
           <Button variant="primary" onClick={onClickButton}>Комментарии</Button>
           {activeComments && <CommentList commentsByPost={commentsByPost}/>}
         </Card.Body>
@@ -49,11 +47,8 @@ const Post = ({title, body, postId, userId, userName}) => {
             />
             <Figure.Caption className='userNameToPost'>{userName}</Figure.Caption>
           </Figure>
-          
         </Card.Body>
-
     </Card>
-    </div>
   )
 }
 

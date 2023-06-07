@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { setTitlePost } from '../redux/actions';
 import { setSortBy } from '../redux/actions/filters';
 
-import { Container, Dropdown, DropdownButton, Figure, Form, Nav, NavDropdown, NavItem, Navbar, Offcanvas } from 'react-bootstrap';
+import { Button, Container, Dropdown, DropdownButton, Figure, Form, Nav, Navbar, Offcanvas } from 'react-bootstrap';
 import avatarImage from '../assets/img/avatar-scaled.jpeg';
 
 
@@ -31,11 +31,17 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar bg="light" expand={false} className="mb-3">
+      <Navbar bg="light" expand={false}>
         <Container fluid>
           <Navbar.Toggle />
-          <DropdownButton id="dropdown" title={"Сортировка постов по заголовку"}>
-            <Dropdown.Item onClick={() => onSortPosts("start")}>Сортировка по убыванию</Dropdown.Item>
+          <Button className='sortButton' onClick={() => onSortPosts('start')} variant="outline-primary">
+            <span className='sort sortDown'></span>
+          </Button>
+          <Button className='sortButton' onClick={() => onSortPosts('end')} variant="outline-primary">
+            <span className='sort sortUp'></span>
+          </Button>
+          <DropdownButton className="dropdownMenu" title={"Сортировка постов по заголовку"}>
+            <Dropdown.Item onClick={() => onSortPosts('start')}>Сортировка по убыванию</Dropdown.Item>
             <Dropdown.Item onClick={() => onSortPosts('ent')}>Сортировка по возрастанию</Dropdown.Item>
           </DropdownButton>
           <Form className="d-flex">

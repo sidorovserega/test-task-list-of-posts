@@ -23,6 +23,30 @@
 .captionAbout {
   color: black;
 }
+
+.sortButton {
+  display: none;
+}
+
+.sort {
+  display: block;
+  border: 5px solid blue;
+  border-top: none;
+  width: 0;
+  height: 0;
+}
+
+.sortDown {
+  border-left-color: rgba(0, 0, 0, 0.0);
+  border-right-color: rgba(0, 0, 0, 0.0);
+  transform: rotate(180deg);
+}
+
+.sortUp {
+  border-left-color: rgba(0, 0, 0, 0.0);
+  border-right-color: rgba(0, 0, 0, 0.0);
+}
+
 /* -----------------end style header --------------------------------------- */
 
 
@@ -42,6 +66,10 @@
 
 .cardPostBody {
   width: 80%;
+}
+
+.cardPostBody {
+  text-align: justify;
 }
 
 .cardPostUser {
@@ -115,3 +143,47 @@
 
 
 /* --------------------------start style @media------------------------------------------ */
+@media screen and (max-width: 600px) {
+  .dropdownMenu {
+    display: none;
+  }
+  .sortButton {
+    display: block;
+  }
+
+  .card-post {
+    display: grid;
+    grid-template-rows: 2;
+    margin: 5px;
+  }
+  .cardPostBody {
+    grid-row: 2;
+    padding: 15px;
+    padding-top: 0;
+    margin: 0;
+    text-align: justify;
+    width: 100%;
+  }
+  .cardPostUser {
+    grid-row: 1;
+    width: 100%;
+    text-align: start;
+    padding: 15px;
+    padding-bottom: 0;
+    margin: 0;
+  }
+  .userNameToPost {
+    margin-left: 15px;
+    display: inline;
+  }
+
+  .cardAbout {
+    margin: 10px;
+    padding: 10px;
+    display: block;
+  }
+  .imageAbout {
+    width: 150px;
+    height: auto;
+  }
+}
