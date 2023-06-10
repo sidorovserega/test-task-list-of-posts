@@ -1,15 +1,21 @@
 import {put, takeEvery, call} from 'redux-saga/effects';
-import { setLoading, setPosts, setPostsByUser } from '../actions/posts';
+import { setLoading, setPosts, setPostsByUser, setPostsError } from '../actions/posts';
 import axios from 'axios';
 
 const delay = (ms) => new Promise(res => setTimeout(res, ms));
 
 //загрузка всех постов---------------------------------------------------------------
 function* fetchPostsWorker() {
-  yield put(setLoading(false));
-  yield delay(500);
-  const {data} = yield call(() => axios.get(`/posts`));
-  yield put(setPosts(data));
+  try {
+    yield put(setLoading(false));
+    yield delay(500);
+    const {data} = yield call(() => axios.get(`/posts`));
+    yield put(setPosts(data));
+  } 
+  catch(e) {
+    yield put(setPostsError(e.message));
+    yield put(setLoading(true));
+  } 
 }
 
 export function* fetchPostsWatcher() {
@@ -19,11 +25,15 @@ export function* fetchPostsWatcher() {
 
 //загрузка постов конкретного пользователя-----------------------------------------------
 function* fetchPostsByUserWorker(action) {  
-  
-  yield put(setLoading(false));
-  yield delay(500);
-  const {data} = yield call(() => axios.get(`/posts?userId=${action.payload}`));
-  yield put(setPostsByUser(data));
+  try {
+    yield put(setLoading(false));
+    yield delay(500);
+    const {data} = yield call(() => axios.get(`/posts?userId=${action.payload}`));
+    yield put(setPostsByUser(data));
+  } catch(e) {
+    yield put(setPostsError(e.message));
+    yield put(setLoading(true));
+  } 
 }
 
 export function* fetchPostsByUserWatcher() {

@@ -9,3 +9,11 @@ export const getCommentsByPost = comments => ({
   payload: comments
 });
 //--------------------------------------------------------------------------------------
+
+export const getCommentsError = (postId, errorMessage) => ({
+  type: 'GET_COMMENTS_ERROR',
+  payload: {
+    postId: postId, 
+    errorMessage: errorMessage
+  }
+})

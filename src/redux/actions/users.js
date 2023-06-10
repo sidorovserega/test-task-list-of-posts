@@ -27,3 +27,9 @@ export const setLoadingUser = (value) => ({
   type: 'SET_LOADING_USER',
   payload: value
 });
+
+//получение ошибки от сервера
+export const setUserError = (errorMessage) => ({
+  type: 'SET_USER_ERROR',
+  payload: errorMessage
+})

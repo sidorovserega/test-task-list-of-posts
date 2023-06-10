@@ -26,3 +26,9 @@ export const setLoading = (value) => ({
   type: 'SET_LOADING',
   payload: value
 });
+
+//получение ошибки от сервера
+export const setPostsError = (errorMessage) => ({
+  type: 'SET_POSTS_ERROR',
+  payload: errorMessage
+})

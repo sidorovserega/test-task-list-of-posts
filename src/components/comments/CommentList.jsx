@@ -5,6 +5,7 @@ import { asyncFetchCommentsByPost } from '../../redux/actions/comments';
 
 import LoaderComments from '../loaders/LoaderComments';
 import CommentItem from './CommentItem';
+import Error from '../Error';
 import { ListGroup } from 'react-bootstrap';
 
 
@@ -16,20 +17,24 @@ const CommentsList = ({postId}) => {
     dispatch(asyncFetchCommentsByPost(postId));
   }, []);
 
-  const {commentsByPost} = useSelector(({comments}) => ({
-    commentsByPost: comments.comments.filter(comment => comment.postId === postId)
+  const {commentsByPost, errorMessage} = useSelector(({comments}) => ({
+    commentsByPost: comments.comments.filter(comment => comment.postId === postId),
+    errorMessage: comments.errors.find(error => error.postId === postId) ? comments.errors.find(error => error.postId === postId).errorMessage : ''
   }));
 
   if (!commentsByPost) return <LoaderComments />
   
   return (
     <ListGroup className='commentsList'>
-      {
-        commentsByPost.map(comment => 
-          <CommentItem key={comment.id} comment={comment}/>
-        )
+      {!errorMessage
+        ?
+          commentsByPost.map(comment => 
+            <CommentItem key={comment.id} comment={comment}/>
+          )
+        :
+          <Error errorMessage={errorMessage}/>
       }
-    </ListGroup>
+    </ListGroup >
   )
 }
 

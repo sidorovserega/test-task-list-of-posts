@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Button, Card, Figure } from 'react-bootstrap';
-import avatarUserImage from '../assets/img/avatar-user.svg';
-import CommentList from './comments/CommentList';
+import avatarUserImage from '../../assets/img/avatar-user.svg';
+import CommentList from '../comments/CommentList';
 
 
 const Post = ({title, body, postId, userObj}) => {
@@ -38,7 +38,7 @@ const Post = ({title, body, postId, userObj}) => {
               src={avatarUserImage}
               onClick={onClickImage}
             />
-            <Figure.Caption className='userNameToPost'>{userObj ? userObj.name : 'Загрузка имени'}</Figure.Caption>
+            <Figure.Caption className='userNameToPost'>{userObj ? userObj.name : ''}</Figure.Caption>
           </Figure>
         </Card.Body>
     </Card>

@@ -1,6 +1,10 @@
 const initialState = {
   items: [],
-  isLoadingPosts: false
+  isLoadingPosts: false,
+  errorPosts: {
+    isError: false,
+    errorMessage: ''
+  }
 }
 
 const posts = (state = initialState, action) => {
@@ -9,19 +13,35 @@ const posts = (state = initialState, action) => {
       return {
         ...state,
         items: action.payload,
-        isLoadingPosts: true
+        isLoadingPosts: true, 
+        errorPosts: {
+          isError: false,
+          errorMessage: ''
+        }
       };
     case 'SET_POSTS_BY_USER':
       return {
           ...state,
           items: [...action.payload],
-          isLoadingPosts: true
+          isLoadingPosts: true,
+          errorPosts: {
+            isError: false,
+            errorMessage: ''
+          }
       }
     case 'SET_LOADING':
       return {
         ...state,
         isLoadingPosts: action.payload
       };
+      case 'SET_POSTS_ERROR':
+        return {
+            ...state,
+            errorPosts: {
+              isError: true,
+              errorMessage: action.payload
+            } 
+          };
     default:
       return state;
   }  
