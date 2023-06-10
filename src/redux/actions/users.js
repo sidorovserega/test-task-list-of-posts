@@ -1,10 +1,8 @@
-import axios from "axios";
-
 //загрузка всех пользователей при загрузке главной странцы------------------------------
-export const fetchUsers = () => (dispatch) => {
-  axios.get(`/users`).
-    then(({data}) => dispatch(setUsers(data)));
-};
+
+export const asyncFetchUsers = () => ({
+  type: 'ASYNC_FETCH_USERS'
+})
 
 export const setUsers = users => ({
   type: 'SET_USERS',
@@ -13,15 +11,10 @@ export const setUsers = users => ({
 //--------------------------------------------------------------------------------------
 
 //загрузка конкретного пользователя на странице пользователя----------------------------
-export const fetchUserBy = (userId) => (dispatch) => {
-  
-  dispatch(setLoadingUser(false));
-  
-  setTimeout(()=>{
-    axios.get(`/users/${userId}`).
-      then(({data}) => dispatch(setByUser(data)));
-  }, 500);
-}
+export const asyncFetchByUser = (userId) => ({
+  type: 'ASYNC_FETCH_BY_USER',
+  payload: userId
+});
 
 export const setByUser = user => ({
   type: 'SET_BY_USER',

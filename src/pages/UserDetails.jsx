@@ -2,8 +2,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUserBy } from '../redux/actions';
-import { fetchPostsByUser } from '../redux/actions/posts';
+import { asyncFetchPostsByUser } from '../redux/actions/posts';
 
 import Post from '../components/Post';
 import LoaderPost from '../components/loaders/LoaderPost';
@@ -12,13 +11,14 @@ import CardUser from '../components/CardUser';
 
 import { Card } from 'react-bootstrap';
 import { sortAndSearchItems } from '../utils/filters';
+import { asyncFetchByUser } from '../redux/actions/users';
 
 
 const UserDetails = () => {
   
   const params = useParams();
   const dispatch = useDispatch();
-
+  
   const {user, isLoadingUser, userPosts, isLoadingPosts, searchTitlePost, sortBy,} = useSelector(({users, posts, filters}) => {
     return {
       user: users.users.find(user => user.id === Number(params.id)),
@@ -31,8 +31,8 @@ const UserDetails = () => {
   })
 
   useEffect(() => {
-    dispatch(fetchUserBy(Number(params.id)));
-    dispatch(fetchPostsByUser(Number(params.id)));
+    dispatch(asyncFetchByUser(Number(params.id)));
+    dispatch(asyncFetchPostsByUser(Number(params.id)));
   }, []);
 
   //посты после сортировки и фильтрации
@@ -53,7 +53,7 @@ const UserDetails = () => {
               ? 
                 resultPostsByUser.map((post, index) => 
                   <Post 
-                    title={post.title} body={post.body} postId={post.id} userId={post.userId} key={`${post.id}_${index}`}
+                    title={post.title} body={post.body} postId={post.id} userObj={user} key={`${post.id}_${index}`}
                   />  
                 )
               :

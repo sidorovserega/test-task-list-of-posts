@@ -3,37 +3,30 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button, Card, Figure } from 'react-bootstrap';
 import avatarUserImage from '../assets/img/avatar-user.svg';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchCommentsByPost } from '../redux/actions/comments';
 import CommentList from './comments/CommentList';
 
 
-const Post = ({title, body, postId, userId, userName}) => {
+const Post = ({title, body, postId, userObj}) => {
   
   const [activeComments, setActiveComments] = useState(false);
-  
-  const dispatch = useDispatch();
 
-  const {commentsByPost} = useSelector(({comments}) => {
-    return {
-      commentsByPost: comments.comments.filter(comment => comment.postId === postId)
-    }
-  });
-
-  const onClickButton = async () => {
-    dispatch(fetchCommentsByPost(postId));
+  const onClickButton = () => {
     setActiveComments(!activeComments);
   };
 
-  const navigate = useNavigate();
+  const onClickImage = () => {
+    navigate(`/users/${userObj.id}`);
+  }
 
+  const navigate = useNavigate();
+  
   return (
       <Card className='mb-10 card-post'>
         <Card.Body className='cardPostBody'>
           <Card.Title>{postId}. {title}</Card.Title>
           <Card.Text className=''>{body}</Card.Text>
           <Button variant="primary" onClick={onClickButton}>Комментарии</Button>
-          {activeComments && <CommentList commentsByPost={commentsByPost}/>}
+          {activeComments && <CommentList postId={postId}/>}
         </Card.Body>
 
         <Card.Body className='cardPostUser'>
@@ -43,9 +36,9 @@ const Post = ({title, body, postId, userId, userName}) => {
               height={100}
               alt="avatarImage 100х100"
               src={avatarUserImage}
-              onClick={() => navigate(`/users/${userId}`)}
+              onClick={onClickImage}
             />
-            <Figure.Caption className='userNameToPost'>{userName}</Figure.Caption>
+            <Figure.Caption className='userNameToPost'>{userObj ? userObj.name : 'Загрузка имени'}</Figure.Caption>
           </Figure>
         </Card.Body>
     </Card>

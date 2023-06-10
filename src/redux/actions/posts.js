@@ -1,14 +1,7 @@
-import axios from "axios";
 //загрузка всех постов на главной странице------------------------------------------------
-export const fetchPosts = () => (dispatch) => {
-  
-  dispatch(setLoading(false));
-  
-  setTimeout(()=>{
-    axios.get(`/posts`).
-    then(({data}) => dispatch(setPosts(data)));
-  }, 500);
-};
+export const asyncFetchPosts = () => ({
+  type: 'ASYNC_FETCH_POSTS'
+})
 
 export const setPosts = (items) => ({
   type: 'SET_POSTS',
@@ -17,15 +10,10 @@ export const setPosts = (items) => ({
 //------------------------------------------------------------------------------------------
 
 //загрузка постов конкретного поьзователя на странице пользователя--------------------------
-export const fetchPostsByUser = (userId) => (dispatch) => {
- 
-  dispatch(setLoading(false));
-  
-  setTimeout(()=>{
-    axios.get(`/posts?userId=${userId}`).
-    then(({data}) => dispatch(setPostsByUser(data)));
-  }, 500);
-}
+export const asyncFetchPostsByUser = (userId) => ({
+  type: 'ASYNC_FETCH_POSTS_BY_USER',
+  payload: userId
+})
 
 export const setPostsByUser = (postsByUser) => ({
   type: 'SET_POSTS_BY_USER',

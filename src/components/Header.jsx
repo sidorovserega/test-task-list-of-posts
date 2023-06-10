@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
-import { setTitlePost } from '../redux/actions';
+import { setTitlePost } from '../redux/actions/filters';
 import { setSortBy } from '../redux/actions/filters';
 
 import { Button, Container, Dropdown, DropdownButton, Figure, Form, Nav, Navbar, Offcanvas } from 'react-bootstrap';

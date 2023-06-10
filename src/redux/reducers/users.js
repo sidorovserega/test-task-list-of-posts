@@ -11,9 +11,16 @@ const users = (state = initialState, action) => {
         users: [...action.payload]
        }
     case 'SET_BY_USER':
-       return {
+    let newUsers = [];  
+      if (state.users.find(user => user.id === action.payload.id)) {
+        newUsers = [...state.users];
+      } else {
+        newUsers = [...state.users, action.payload];
+      }
+    
+    return {
         ...state,
-        users: [action.payload],
+        users: newUsers,
         isLoadingUser: true
       }
     default:

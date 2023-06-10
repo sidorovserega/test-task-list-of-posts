@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPosts, fetchUsers} from '../redux/actions/index';
 
 import Post from '../components/Post';
 import LoaderPost from '../components/loaders/LoaderPost';
@@ -8,6 +7,8 @@ import PaginationPosts from '../components/PaginationPosts';
 
 import { getPagesCount, selectPostsFromPage } from '../utils/pages';
 import { sortAndSearchItems } from '../utils/filters';
+import { asyncFetchPosts } from '../redux/actions/posts';
+import { asyncFetchUsers } from '../redux/actions/users';
 
 
 const Home = () => {
@@ -27,8 +28,8 @@ const Home = () => {
   });
 
   useEffect(() => {
-    dispatch(fetchUsers());
-    dispatch(fetchPosts());
+    dispatch(asyncFetchUsers());
+    dispatch(asyncFetchPosts());
   }, []);
   
   //посты после сортировки и фильтрации
@@ -58,8 +59,7 @@ const Home = () => {
             title={item.title} 
             body={item.body}  
             postId={item.id}
-            userId={item.userId}
-            userName={users.find(user => user.id === item.userId).name}
+            userObj={users.find(user => user.id === item.userId)}
           />
         )
         :
