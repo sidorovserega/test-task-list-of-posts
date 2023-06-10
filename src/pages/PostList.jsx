@@ -26,11 +26,18 @@ const Home = () => {
       users: users.users
     }
   });
-
+  //загрузка пользователей и постов
   useEffect(() => {
     dispatch(asyncFetchUsers());
     dispatch(asyncFetchPosts());
   }, []);
+
+  //изменение отображаемой страницы при поиске по заголовку
+  useEffect(() => {
+    if (resultPostsFromPage.length === 0) {
+      changePage(1);
+    }
+  }, [searchTitlePost])
   
   //посты после сортировки и фильтрации
   const resultItemsPosts = sortAndSearchItems(items,sortBy,searchTitlePost);

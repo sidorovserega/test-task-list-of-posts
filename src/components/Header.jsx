@@ -18,6 +18,7 @@ const Header = () => {
   const onSearchTitlePosts = (e) => {
     setSeachTitle(e.target.value);
     dispatch(setTitlePost(e.target.value));
+    
   }
 
   const onSortPosts = (type) => {
