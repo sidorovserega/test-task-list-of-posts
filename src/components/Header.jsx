@@ -18,7 +18,6 @@ const Header = () => {
   const onSearchTitlePosts = (e) => {
     setSeachTitle(e.target.value);
     dispatch(setTitlePost(e.target.value));
-    
   }
 
   const onSortPosts = (type) => {
@@ -41,7 +40,7 @@ const Header = () => {
           <Button className='sortButton' onClick={() => onSortPosts('end')} variant="outline-primary">
             <span className='sort sortUp'></span>
           </Button>
-          <DropdownButton className="dropdownMenu" title={"Сортировка постов по заголовку"}>
+          <DropdownButton className="dropdownMenu" variant='warning' title={"Сортировка постов по заголовку"}>
             <Dropdown.Item onClick={() => onSortPosts('start')}>Сортировка по убыванию</Dropdown.Item>
             <Dropdown.Item onClick={() => onSortPosts('ent')}>Сортировка по возрастанию</Dropdown.Item>
           </DropdownButton>
@@ -83,7 +82,7 @@ const Header = () => {
         </Container>
       </Navbar>
     </header>
-  )
+  );
 }
 
 export default Header;

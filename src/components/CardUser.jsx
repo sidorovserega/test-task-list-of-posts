@@ -1,11 +1,13 @@
-import React from 'react'
-import { Button, Card } from 'react-bootstrap';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { Button, Card } from 'react-bootstrap';
+
 
 const CardUser = ({user}) => {
+ 
   return (
     <>
-      <Card.Header>{user.name}</Card.Header>
+      <Card.Header className='userHeader'>{user.name}</Card.Header>
         <Card.Body>
           <Card.Title>Адрес проживания</Card.Title>
           <Card.Text>
@@ -23,10 +25,10 @@ const CardUser = ({user}) => {
           </Card.Text>
         </Card.Body>
         <Link to="/posts">
-          <Button variant="primary" className='buttonUserDetails'>Назад</Button>
+          <Button variant='warning' className='buttonUserDetails'>Назад</Button>
         </Link>
     </>
-  )
+  );
 }
 
 export default CardUser;

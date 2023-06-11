@@ -7,7 +7,7 @@ const Error = ({errorMessage}) => {
     <Alert variant='warning' className='card-post'>
       {errorMessage}
     </Alert>
-  )
+  );
 }
 
 export default Error;

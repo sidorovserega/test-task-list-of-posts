@@ -6,7 +6,7 @@ import avatarUserImage from '../../assets/img/avatar-user.svg';
 import CommentList from '../comments/CommentList';
 
 
-const Post = ({title, body, postId, userObj}) => {
+const Post = React.memo(({title, body, postId, userObj}) => {
   
   const [activeComments, setActiveComments] = useState(false);
 
@@ -21,16 +21,16 @@ const Post = ({title, body, postId, userObj}) => {
   const navigate = useNavigate();
   
   return (
-      <Card className='mb-10 card-post'>
+      <Card className='mb-10 cardPost'>
         <Card.Body className='cardPostBody'>
           <Card.Title>{postId}. {title}</Card.Title>
           <Card.Text className=''>{body}</Card.Text>
-          <Button variant="primary" onClick={onClickButton}>Комментарии</Button>
+          <Button variant='warning' onClick={onClickButton} className='buttonPost'>Комментарии</Button>
           {activeComments && <CommentList postId={postId}/>}
         </Card.Body>
 
         <Card.Body className='cardPostUser'>
-          <Figure>
+          <Figure className='figure'>
             <Figure.Image
               width={100}
               height={100}
@@ -42,7 +42,7 @@ const Post = ({title, body, postId, userObj}) => {
           </Figure>
         </Card.Body>
     </Card>
-  )
-}
+  );
+});
 
 export default Post;

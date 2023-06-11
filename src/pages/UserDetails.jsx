@@ -46,7 +46,7 @@ const UserDetails = () => {
   }
 
   return (
-    <Card bg="warning" text="black" className="userDetails">
+    <Card text="black" className="userDetails">
       {errorUser.isError
         ?
           <Error errorMessage={errorUser.errorMessage}/>
@@ -68,9 +68,8 @@ const UserDetails = () => {
             }
           </>
       }
-      
     </Card>
-  )
+  );
 }
 
 export default UserDetails;

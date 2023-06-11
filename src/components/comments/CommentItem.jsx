@@ -10,7 +10,6 @@ const CommentItem = ({comment}) => {
         <Card.Text className='cardText'>{comment.body}</Card.Text>
       </Card>
     </ListGroup.Item>
-    
   )
 }
 

@@ -12,7 +12,7 @@ const Loader = () => {
           <Placeholder xs={6} />
         </Placeholder>         
       </Card>
-  )
+  );
 }
 
 export default Loader;

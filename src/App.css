@@ -5,9 +5,6 @@
 }
 
 /* -----------------start style header-------------------------------------- */
-.mainHeader {
-  margin: 10px;
-}
 
 .headerMenu-link {
   color: black;
@@ -26,11 +23,12 @@
 
 .sortButton {
   display: none;
+  border-color: #ffc107;
 }
 
 .sort {
   display: block;
-  border: 5px solid blue;
+  border: 5px solid #ffc107;
   border-top: none;
   width: 0;
   height: 0;
@@ -51,17 +49,23 @@
 
 
 /* -----------------start style posts---------------------------------------- */
+
+.mainTitle {
+  margin: 10px;
+  padding-left: 10px;
+}
+
 .userNameToPost {
   display: block;
   font-size: 20px;
 }
 
-.card-post {
+.cardPost {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: start;
-  margin: 10px
+  margin: 10px;
 }
 
 .cardPostBody {
@@ -75,7 +79,14 @@
 .cardPostUser {
   width: 20%;
   text-align: center;
-  margin: 20px;
+}
+
+.figure {
+  margin: 0;
+}
+
+.buttonPost {
+  width: 250px;
 }
 /* ----------------------end style posts----------------------------------- */
 
@@ -112,9 +123,14 @@
   padding: 25px;
 }
 
+.userHeader {
+  font-size: 25px;
+  font-weight: bold;
+}
+
 .buttonUserDetails {
   margin: 10px;
-  width: 140px;
+  width: 250px;
 }
 /* -----------------------end style users------------------------------------------ */
 
@@ -142,6 +158,22 @@
 /* -------------------------end style about-------------------------------------------- */
 
 
+/* -------------------------start style placeholder ------------------------------------ */
+
+.postPlaceholder {
+  width: 80%;
+}
+
+.userPlaceholder {
+  width: 80%;
+}
+
+.buttonUserLoader {
+  margin-left: 0;
+}
+/* --------------------------end style placeholder -------------------------------------- */
+
+
 /* --------------------------start style @media------------------------------------------ */
 @media screen and (max-width: 600px) {
   .dropdownMenu {
@@ -150,8 +182,7 @@
   .sortButton {
     display: block;
   }
-
-  .card-post {
+  .cardPost {
     display: grid;
     grid-template-rows: 2;
     margin: 5px;

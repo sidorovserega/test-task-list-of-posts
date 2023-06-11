@@ -13,14 +13,14 @@ const CommentsList = ({postId}) => {
     
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(asyncFetchCommentsByPost(postId));
-  }, []);
-
   const {commentsByPost, errorMessage} = useSelector(({comments}) => ({
     commentsByPost: comments.comments.filter(comment => comment.postId === postId),
     errorMessage: comments.errors.find(error => error.postId === postId) ? comments.errors.find(error => error.postId === postId).errorMessage : ''
   }));
+
+  useEffect(() => {
+    dispatch(asyncFetchCommentsByPost(postId));
+  }, []);
 
   if (!commentsByPost) return <LoaderComments />
   

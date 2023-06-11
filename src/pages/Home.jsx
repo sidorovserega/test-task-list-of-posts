@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
+import { asyncFetchPosts } from '../redux/actions/posts';
+import { asyncFetchUsers } from '../redux/actions/users';
 
 import LoaderPost from '../components/loaders/LoaderPost';
 import PaginationPosts from '../components/PaginationPosts';
+import Error from '../components/Error';
+import PostList from '../components/Posts/PostList';
 
 import { getPagesCount, selectPostsFromPage } from '../utils/pages';
 import { sortAndSearchItems } from '../utils/filters';
-import { asyncFetchPosts } from '../redux/actions/posts';
-import { asyncFetchUsers } from '../redux/actions/users';
-import Error from '../components/Error';
-import PostList from '../components/Posts/PostList';
 
 
 const Home = () => {
@@ -28,6 +29,7 @@ const Home = () => {
       users: users.users,
     }
   });
+
   //загрузка пользователей и постов
   useEffect(() => {
     dispatch(asyncFetchUsers());
@@ -60,15 +62,15 @@ const Home = () => {
   if (!isLoadingPosts) {
     return (
       <>
-        <h1 className='mainHeader'>Список постов</h1>
+        <h1 className='mainTitle'>Список постов</h1>
         <LoaderPost />
       </>
-    )
+    );
   }
 
   return (
     <>
-      <h1 className='mainHeader'>Список постов</h1>
+      <h1 className='mainTitle'>Список постов</h1>
       {!errorPosts.isError
         ?
           <>
@@ -79,7 +81,7 @@ const Home = () => {
           <Error errorMessage={errorPosts.errorMessage}/>
       }
     </>
-  )
+  );
 }
 
 export default Home;

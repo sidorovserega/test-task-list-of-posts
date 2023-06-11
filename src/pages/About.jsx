@@ -3,6 +3,7 @@ import { Card, Nav } from 'react-bootstrap';
 import avatarUser from '../assets/img/avatar-user.svg';
 
 const About = () => {
+  
   return (
     <Card className='cardAbout'>
       <Card.Img variant="top" src={avatarUser} className='imageAbout'/>
@@ -20,7 +21,7 @@ const About = () => {
         </Card.Text>
       </Card.Body>
     </Card>
-  )
+  );
 }
 
 export default About;
