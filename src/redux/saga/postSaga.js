@@ -9,7 +9,7 @@ function* fetchPostsWorker() {
   try {
     yield put(setLoading(false));
     yield delay(500);
-    const {data} = yield call(() => axios.get(`/posts`));
+    const {data} = yield call(() => axios.get(`https://jsonplaceholder.typicode.com/posts`));
     yield put(setPosts(data));
   } 
   catch(e) {
@@ -28,7 +28,7 @@ function* fetchPostsByUserWorker(action) {
   try {
     yield put(setLoading(false));
     yield delay(500);
-    const {data} = yield call(() => axios.get(`/posts?userId=${action.payload}`));
+    const {data} = yield call(() => axios.get(`https://jsonplaceholder.typicode.com/posts?userId=${action.payload}`));
     yield put(setPostsByUser(data));
   } catch(e) {
     yield put(setPostsError(e.message));

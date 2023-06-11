@@ -8,7 +8,7 @@ const delay = (ms) => new Promise(res => setTimeout(res, ms));
 function* fetchCommentsByPostWorker(action) {
   try {
     yield delay(500);
-    const {data} = yield call(() => axios.get(`/posts/${action.payload}/comments`));
+    const {data} = yield call(() => axios.get(`https://jsonplaceholder.typicode.com/posts/${action.payload}/comments`));
     yield put(getCommentsByPost(data));
   }
   catch(e) {
